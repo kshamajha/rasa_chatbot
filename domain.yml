@@ -1,0 +1,127 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- goodbye
+- greet
+- restaurant_search
+- donot_send_email
+- stop
+- send_email
+- affirm
+- negative
+entities:
+- cuisine
+- location
+- mail_id
+- people
+- price
+slots:
+  cuisine:
+    type: text
+    influence_conversation: true
+  price:
+    type: text
+    influence_conversation: true
+  location:
+    type: text
+    influence_conversation: true
+  mail_id:
+    type: text
+    influence_conversation: true
+  location_resp:
+    type: bool
+    influence_conversation: true
+  cuisine_resp:
+    type: bool
+    influence_conversation: true
+  price_resp:
+    type: bool
+    influence_conversation: true
+  restaurant_exist:
+    type: bool
+    initial_value: false
+    influence_conversation: true
+responses:
+  utter_ask_cuisine:
+  - buttons:
+    - payload: Chinese
+      title: Chinese
+    - payload: Mexican
+      title: Mexican
+    - payload: Italian
+      title: Italian
+    - payload: American
+      title: American
+    - payload: South Indian
+      title: South Indian
+    - payload: North Indian
+      title: North Indian
+    text: What kind of cuisine would you prefer?
+  utter_ask_price:
+  - buttons:
+    - payload: low
+      title: Lesser than Rs. 300
+    - payload: medium
+      title: Rs. 300 to 700
+    - payload: high
+      title: More than 700
+    text: What price range are you looking at?
+  utter_ask_howcanhelp:
+  - text: how can I help you?
+  utter_ask_location:
+  - text: In what location?
+  - text: What location do you prefer?
+  utter_ask_locationagain:
+  - text: Please provide some other preferred location.
+  - text: We are happy to serve you in other location. Please provide other prefered location.
+  utter_ask_email:
+  - text: Do you want the details of top restaurants on your email?
+    buttons:
+    - title: Yes
+      payload: /send_email
+    - title: No
+      payload: /donot_send_email
+  utter_ask_emailid:
+  - text: Please provide your email id.
+  utter_email_sent:
+  - text: Email sent. Bon Appetit!
+  - text: Sent. Bon Appetit!
+  utter_more_help:
+  - text: Do you want to find some more restaurants?
+  utter_default:
+  - text: Sorry, I cannot understand that
+  utter_goodbye:
+  - text: Goodbye
+  - text: Bye-bye
+  - text: See you again soon
+  utter_greet:
+  - text: hey there! How may i help you
+  - text: Hi, How can I help you!
+  - text: Hey, How is it going? How may I help you today?
+  utter_we_dont_operate:
+  - text: Sorry, we don't operate in that area yet! :(
+  utter_do_not_sent_email:
+  - text: Okay. Bon Appetit!
+  - text: Sure. Bon Appetit!
+actions:
+- action_check_cuisine
+- action_check_loc
+- action_check_price
+- action_search_restaurants
+- action_send_mail
+- utter_ask_cuisine
+- utter_ask_email
+- utter_ask_emailid
+- utter_ask_howcanhelp
+- utter_ask_location
+- utter_ask_locationagain
+- utter_ask_price
+- utter_default
+- utter_do_not_sent_email
+- utter_email_sent
+- utter_goodbye
+- utter_greet
+- utter_more_help
+- utter_we_dont_operate
